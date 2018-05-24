@@ -54,7 +54,7 @@ function SetData_form_id()
 		type_obj="Папка";
 		type_obj2="fold";
 	}
-	else if((obj_name_search.search("_file_")!=-1)&&(obj_name_search.search("jpg_")!=-1))
+	else if((obj_name_search.search("_file_")!=-1)&&((obj_name_search.search("jpg_")!=-1)||(obj_name_search.search("jpeg_")!=-1)))
 	{
 		type_obj="Изображение";
 		type_obj2="pict";
