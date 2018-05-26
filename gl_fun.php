@@ -94,6 +94,7 @@
 
   }
 
+
   Function get_real_name_f($obj) //возврат настоящего наименования файла
   {
     $obj=str_replace("-0-",".",$obj);
@@ -203,4 +204,83 @@
 /*      echo "1";*/
     }
   }
+
+  Function its_pict_gl($entry) //иденрификация картинки по строке
+  {
+    $entry=mb_strtolower($entry);
+    if ((stripos($entry,'.jpg')!== false)
+    or(stripos($entry,'.jpeg')!== false))
+    {
+      return true;
+    }
+
+    return false;
+  }
+  
+  Function get_type_gl($entry)//получение расширения файла
+  {
+    if (file_exists("./data/".$entry)==false)
+    {
+      return 'other';
+    }
+
+    $file_t=filetype('./data/'.$entry);//тип объекта для ИД
+    /*echo './data/'.$dir_now.$entry;*/
+    if ($file_t=='dir')
+    {
+      return 'dir';
+    }
+
+    if ((its_pict_gl($entry)!== false)&&(stripos($entry,'_sml')!== false))
+    {
+      return 'ico';
+    }
+    elseif (its_pict_gl($entry)!== false)
+    {
+      return 'pic';
+    }
+    elseif (stripos($entry,'.txt')!== false)
+    {
+      return 'txt';
+    }
+    else
+    {
+      return 'other';
+    }
+  }
+
+  Function get_name_syn_gl($obj) //возврат наименования файла описания от наименования файла объекта
+  {
+    $type_ob=get_type_gl($obj);
+
+    $obj=str_replace(".JPG","",$obj);
+    $obj=str_replace('.jpeg',"",$obj);
+    $obj=str_replace(".txt","",$obj);
+
+    $obj=$obj."_".$type_ob.".syn";    
+
+    return $obj;
+  }  
+
+  Function get_synonym_gl($obj_) /*получение текста синонима по наименования файла объекта*/
+  {
+    $real_name_f=get_real_name_f($obj_);
+    $real_name_f=get_name_syn_gl($real_name_f);
+
+    /*echo $real_name_f;*/
+    if (file_exists("./data/".$real_name_f))
+    {
+      $fp = fopen("./data/".$real_name_f, "rb"); 
+
+      if ($fp)
+      {
+        return trim(fread($fp, filesize("./data/".$real_name_f)));  
+      }
+      
+      fclose($fp);
+    }
+    else
+    {
+    }
+  }  
 ?>

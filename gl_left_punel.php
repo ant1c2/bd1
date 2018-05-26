@@ -90,7 +90,16 @@
 
 				if (($entry=='.') or($entry=='..')) continue;
 
-				$p1=$entry;
+				$syn_n1=get_synonym_gl($dir_now.$entry); /*получаем синоним*/
+				if ($syn_n1=="")
+				{
+					$p1=$entry;
+				}
+				else
+				{
+					$p1=$syn_n1;
+				}
+				
 
 				/*$p1=$p1.$file_t;*/
 				$file_t1=filetype('./data/'.$dir_now.$entry);//тип объекта для ИД
@@ -162,7 +171,18 @@
 
 				/*$levels=$levels+1;*/
 
-				$p1=$dir_1;//наименование
+				
+				
+				$syn_n1=get_synonym_gl($dir_1); /*получаем синоним ???*/
+				if ($syn_n1=="")
+				{
+					$p1=$dir_1;//наименование
+				}
+				else
+				{
+					$p1=$syn_n1;
+				}
+
 				$file_t1="dir";//тип объекта для ИД // fath
 				$dir_2=str_replace(".","-0-",$dir_1);//заменяем точку для корректного ИД
 				$dir_2=$dir_hist.$dir_2;

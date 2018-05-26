@@ -10,6 +10,9 @@ function change_txt_sp_n(ID_elem)//новая функция открытия о
 	var x = document.getElementById("sp_1").textContent;
 	document.getElementById("txt_block_description").value= x.trim();
 
+	x = document.getElementById("syn_now_id").textContent;
+	document.getElementById("txt_block_synonym").value= x.trim();
+
 	id_tek_obj=document.getElementById("obj_get_id").textContent.trim();
 	if ((id_tek_obj=='')||(id_tek_obj=='list_root_li'))
 	{
@@ -52,12 +55,12 @@ function SetData_form_id()
 	if (obj_name_search.search("_dir_")!=-1)
 	{
 		type_obj="Папка";
-		type_obj2="fold";
+		type_obj2="dir";
 	}
 	else if((obj_name_search.search("_file_")!=-1)&&((obj_name_search.search("jpg_")!=-1)||(obj_name_search.search("jpeg_")!=-1)))
 	{
 		type_obj="Изображение";
-		type_obj2="pict";
+		type_obj2="pic";
 	}
 	else if((obj_name_search.search("_file_")!=-1)&&(obj_name_search.search("txt_")!=-1))
 	{

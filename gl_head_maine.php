@@ -1,11 +1,18 @@
 <!-- общий заголовок страниц -->
 
 <div id="high_div">
- 	<span id="obj_get_id" class="hidden">
+ 	<span id="obj_get_id" class="hidden"> <!-- параметр гет запроса -->
  		<?php
- 			echo get_op_obj();
+      $obj_get_txt=get_op_obj();
+ 			echo $obj_get_txt;
  		?>
 	</span>
+
+  <span id="syn_now_id" class="hidden"> <!-- синоним текущего объекта ??? надо еще имя файла выделить !!! ?? где оно выделяется ??-->
+    <?php
+      echo get_synonym_gl($obj_get_txt);
+    ?>
+  </span>
 
  	<span id="dir_get_id" class="hidden">
  		<?php
